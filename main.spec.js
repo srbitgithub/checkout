@@ -5,42 +5,43 @@ describe('checkout', ()=>{
     const checkout = new Checkout()
 
     it ('Return 0 if the string is empty', ()=>{
-        const result = checkout.main('')
+        const result = checkout.separeByCharGroups('')
         expect(result).toBe(0)
     });
 
     it ('Return 50 if the string is A', ()=>{
-        const result = checkout.main('A')
+        const result = checkout.separeByCharGroups('A')
         expect(result).toBe(50)
     });
 
     it ('Return 30 if the string is B', ()=>{
-        const result = checkout.main('B')
+        const result = checkout.separeByCharGroups('B')
         expect(result).toBe(30)
     });
 
     it ('Return 20 if the string is C', ()=>{
-        const result = checkout.main('C')
+        const result = checkout.separeByCharGroups('C')
+
         expect(result).toBe(20)
     });
 
     it ('Return 15 if the string is D', ()=>{
-        const result = checkout.main('D')
+        const result = checkout.separeByCharGroups('D')
         expect(result).toBe(15)
     });
 
     it ('Return 80 if the string is AB', ()=>{
-        const result = checkout.main('AB')
+        const result = checkout.separeByCharGroups('AB')
         expect(result).toBe(80)
     });
 
     it ('Return 65 if the string is CDB', ()=>{
-        const result = checkout.main('CDB')
+        const result = checkout.separeByCharGroups('CDB')
         expect(result).toBe(65)
     });
 
     it ('Return 115 if the string is CDBA', ()=>{
-        const result = checkout.main('CDBA')
+        const result = checkout.separeByCharGroups('CDBA')
         expect(result).toBe(115)
     });
 
@@ -75,5 +76,13 @@ describe('checkout', ()=>{
         expect(result).toBe(175)
     });
 
+    it ('Return 190 if the string is AAABBD', ()=>{
+        const result = checkout.separeByCharGroups('AAABBD')
+        expect(result).toBe(190)
+    });
 
+    it ('Return 190 if the string is DABABA', ()=>{
+        const result = checkout.separeByCharGroups('DABABA')
+        expect(result).toBe(190)
+    });
 });
