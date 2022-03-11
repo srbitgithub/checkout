@@ -1,59 +1,51 @@
 function Checkout() {
 
-    this.findItem = function(myArray, itemToFind){
-        const newArray = myArray.filter(item => item == itemToFind)
-        return newArray
-    }
-
-    this.separeByCharGroups = function (myString){
+    this.main = function (myString){
         let total = 0
 
         let myArray = myString.split('')
+
         const itemsA = this.findItem(myArray, 'A')
         const itemsB = this.findItem(myArray, 'B')
         const itemsC = this.findItem(myArray, 'C')
         const itemsD = this.findItem(myArray, 'D')
 
-        total = total + this.calculateTotal(itemsA, 'A')
-        total = total + this.calculateTotal(itemsB, 'B')
-        total = total + this.calculateTotal(itemsC, 'C')
-        total = total + this.calculateTotal(itemsD, 'D')
+        total = total + this.calculateItemsA(itemsA)
+        total = total + this.calculateItemsB(itemsB)
+        total = total + this.calculateItemsC(itemsC)
+        total = total + this.calculateItemsD(itemsD)
 
         return total
     }
 
-    this.calculateTotal = function (myArray, charGroup){
-        let totalGroupA = 0
-        let totalReminderGroupA = 0
-        let totalGroupB = 0
-        let totalReminderGroupB = 0
-        let totalGroupC = 0
-        let totalGroupD = 0
-
-        if (charGroup == 'A')
-        {
-            if (myArray.length > 2) totalGroupA = this.calculateGroupA(myArray)
-            totalReminderGroupA = this.calculateReminderGroupA(myArray)
-        }
-        if (charGroup == 'B')
-        {
-            if (myArray.length > 1) totalGroupB = this.calculateGroupB(myArray)
-            totalReminderGroupB = this.calculateReminderGroupB(myArray)
-        }
-        if (charGroup == 'C')
-        {
-            if (myArray.length > 0) totalGroupC = this.calculateGroupC(myArray)
-        }
-        if (charGroup == 'D')
-        {
-            if (myArray.length > 0) totalGroupD = this.calculateGroupD(myArray)
-        }
-
-        return  (totalGroupA + totalReminderGroupA + totalGroupB + totalReminderGroupB +
-                totalGroupC + totalGroupD)
+    this.findItem = function(myArray, itemToFind){
+        const newArray = myArray.filter(item => item == itemToFind)
+        return newArray
     }
 
+    this.calculateItemsA = function (myArray){
+        totalGroupA = this.calculateGroupA(myArray)
+        totalReminderGroupA = this.calculateReminderGroupA(myArray)
 
+        return totalGroupA + totalReminderGroupA
+    }
+
+    this.calculateItemsB = function (myArray){
+        totalGroupB = this.calculateGroupB(myArray)
+        totalReminderGroupB = this.calculateReminderGroupB(myArray)
+
+        return totalGroupB + totalReminderGroupB
+    }
+
+    this.calculateItemsC = function (myArray){
+        return this.calculateGroupC(myArray)
+    }
+
+    this.calculateItemsD = function (myArray){
+        return this.calculateGroupD(myArray)
+    }
+
+    
     this.calculateGroupA = function(myArray){
         const result = Math.floor(myArray.length / 3)
         return result * 130
