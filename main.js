@@ -1,76 +1,83 @@
 function Checkout() {
 
-    this.main = function (myString){
-        let total = 0
+    let incrementalString = ''
 
+    this.Main = function (myString){
         let myArray = myString.split('')
 
-        const itemsA = this.findItem(myArray, 'A')
-        const itemsB = this.findItem(myArray, 'B')
-        const itemsC = this.findItem(myArray, 'C')
-        const itemsD = this.findItem(myArray, 'D')
+        return this.CalculateTotal(myArray)
+    }
 
-        total = total + this.calculateItemsA(itemsA)
-        total = total + this.calculateItemsB(itemsB)
-        total = total + this.calculateItemsC(itemsC)
-        total = total + this.calculateItemsD(itemsD)
+    this.MainIncremental = function(myString){
+        incrementalString = incrementalString + myString
+        let myArray = incrementalString.split('')
+
+        return this.CalculateTotal(myArray)
+    }
+
+    this.CalculateTotal = function(myArray){
+        let total = 0
+        const itemsA = this.FindItem(myArray, 'A')
+        const itemsB = this.FindItem(myArray, 'B')
+        const itemsC = this.FindItem(myArray, 'C')
+        const itemsD = this.FindItem(myArray, 'D')
+
+        total = total + this.CalculateItemsA(itemsA)
+        total = total + this.CalculateItemsB(itemsB)
+        total = total + this.CalculateItemsC(itemsC)
+        total = total + this.CalculateItemsD(itemsD)
 
         return total
     }
 
-    this.findItem = function(myArray, itemToFind){
-        const newArray = myArray.filter(item => item == itemToFind)
-        return newArray
+    this.FindItem = function(myArray, itemToFind){
+        return myArray.filter(item => item == itemToFind)
     }
 
-    this.calculateItemsA = function (myArray){
-        totalGroupA = this.calculateGroupA(myArray)
-        totalReminderGroupA = this.calculateReminderGroupA(myArray)
+    this.CalculateItemsA = function (myArray){
+        totalGroupA = this.CalculateGroupA(myArray)
+        totalReminderGroupA = this.CalculateReminderGroupA(myArray)
 
         return totalGroupA + totalReminderGroupA
     }
 
-    this.calculateItemsB = function (myArray){
-        totalGroupB = this.calculateGroupB(myArray)
-        totalReminderGroupB = this.calculateReminderGroupB(myArray)
+    this.CalculateItemsB = function (myArray){
+        totalGroupB = this.CalculateGroupB(myArray)
+        totalReminderGroupB = this.CalculateReminderGroupB(myArray)
 
         return totalGroupB + totalReminderGroupB
     }
 
-    this.calculateItemsC = function (myArray){
-        return this.calculateGroupC(myArray)
+    this.CalculateItemsC = function (myArray){
+        return this.CalculateGroupC(myArray)
     }
 
-    this.calculateItemsD = function (myArray){
-        return this.calculateGroupD(myArray)
+    this.CalculateItemsD = function (myArray){
+        return this.CalculateGroupD(myArray)
     }
 
     
-    this.calculateGroupA = function(myArray){
-        const result = Math.floor(myArray.length / 3)
-        return result * 130
+    this.CalculateGroupA = function(myArray){
+        return Math.floor(myArray.length / 3) * 130
     }
 
-    this.calculateReminderGroupA = function(myArray){
-        const result = Math.floor(myArray.length % 3)
-        return result * 50
+    this.CalculateReminderGroupA = function(myArray){
+        return Math.floor(myArray.length % 3) * 50
     }
 
-    this.calculateGroupB = function(myArray){
-        const result = Math.floor(myArray.length / 2)
-        return result * 45
+    this.CalculateGroupB = function(myArray){
+        return Math.floor(myArray.length / 2) * 45
     }
 
-    this.calculateReminderGroupB = function(myArray){
-        const result = Math.floor(myArray.length % 2)
-        return result * 30
+    this.CalculateReminderGroupB = function(myArray){
+        return Math.floor(myArray.length % 2) * 30
     }
 
-    this.calculateGroupC = function(myArray){
+    this.CalculateGroupC = function(myArray){
         return myArray.length * 20
     }
 
-    this.calculateGroupD = function(myArray){
+    this.CalculateGroupD = function(myArray){
         return myArray.length * 15
     }
 }
