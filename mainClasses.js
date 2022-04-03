@@ -46,8 +46,8 @@ class Checkout {
     }
 
     calculateDiscountCD = (totalC, totalD) => {
-        const discountC = totalC * 25 / 100
-        const discountD = totalD * 25 / 100
+        const discountC = totalC * this.DISCOUNT_C_D / 100
+        const discountD = totalD * this.DISCOUNT_C_D / 100
         return discountC + discountD
     }
 
