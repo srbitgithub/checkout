@@ -9,6 +9,7 @@ class Checkout {
         this.VALUE_B_BY_2 = 45
         this.VALUE_C = 20
         this.VALUE_D = 15
+        this.DISCOUNT_C_D = 25
 
         this.total =  this.main()
         return this.total
@@ -28,16 +29,26 @@ class Checkout {
 
     calculateTotal = (myArray) => {
         let total = 0
+        let discount = 0
         const itemsA = this.findItem(myArray, 'A')
         const itemsB = this.findItem(myArray, 'B')
         const itemsC = this.findItem(myArray, 'C')
         const itemsD = this.findItem(myArray, 'D')
 
-        total = total + this.calculateItemsA(itemsA)
-        total = total + this.calculateItemsB(itemsB)
-        total = total + this.calculateItemsC(itemsC)
-        total = total + this.calculateItemsD(itemsD)
-        return total
+        const totalA = this.calculateItemsA(itemsA)
+        const totalB = this.calculateItemsB(itemsB)
+        const totalC = this.calculateItemsC(itemsC)
+        const totalD = this.calculateItemsD(itemsD)
+
+        if (totalC > 0 && totalD > 0) discount = this.calculateDiscountCD(totalC, totalD)
+
+        return totalA + totalB + totalC + totalD - discount
+    }
+
+    calculateDiscountCD = (totalC, totalD) => {
+        const discountC = totalC * 25 / 100
+        const discountD = totalD * 25 / 100
+        return discountC + discountD
     }
 
     findItem = (myArray, itemToFind) => myArray.filter(item => item == itemToFind)
@@ -69,6 +80,7 @@ class Checkout {
     calculateGroupC = (myArray) => myArray.length * this.VALUE_C
 
     calculateGroupD = (myArray) => myArray.length * this.VALUE_D
+
 }
 
 module.exports = Checkout

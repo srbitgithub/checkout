@@ -34,14 +34,14 @@ describe('checkout', () =>{
         expect(checkout.total).toBe(80)
     });
 
-    it ('Return 65 if the string is CDB', ()=>{
+    it ('Return 56.25 if the string is CDB', ()=>{
         const checkout = new Checkout('CDB')
-        expect(checkout.total).toBe(65)
+        expect(checkout.total).toBe(56.25)
     });
 
-    it ('Return 115 if the string is CDBA', ()=>{
+    it ('Return 106.25 if the string is CDBA', ()=>{
         const checkout = new Checkout('CDBA')
-        expect(checkout.total).toBe(115)
+        expect(checkout.total).toBe(106.25)
     });
 
     it ('Return 100 if the string is AA', ()=>{
